@@ -142,8 +142,8 @@ export class Processor extends SimpleProcessor implements types.ProcessorInterfa
     declare public lang: string;
     declare public title: string;
     declare public timeZone: string;
-    declare public margins: string;
-    declare public lineHeight: number;
+    declare public margins: number|string;
+    declare public lineHeight: number|string;
     declare public dialect: types.DialectInterface;
     declare public assets: types.Obj<Blob>;
     declare public fields: types.Field[];
@@ -240,13 +240,13 @@ export class Processor extends SimpleProcessor implements types.ProcessorInterfa
         return this;
     }
 
-    public setMargins(val: string): this {
-        this.margins = val?.trim() || '';
+    public setMargins(val: number|string): this {
+        this.margins = typeof val === 'string' ? val?.trim() : val;
         return this;
     }
 
-    public setLineHeight(val: number): this {
-        this.lineHeight = val;
+    public setLineHeight(val: number|string): this {
+        this.lineHeight = typeof val === 'string' ? val?.trim() : val;
         return this;
     }
 
